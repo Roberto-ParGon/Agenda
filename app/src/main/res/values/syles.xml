@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="GrayTheme" parent="Theme.AppCompat.Light">
+        <!-- Otros atributos del tema -->
+        <item name="android:colorBackground">@color/gray</item>
+    </style>
+
+</resources>
