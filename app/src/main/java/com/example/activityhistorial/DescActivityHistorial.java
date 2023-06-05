@@ -1,11 +1,13 @@
 package com.example.activityhistorial;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,7 +24,12 @@ public class DescActivityHistorial extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_desc_historial);
 
-        //Método que muestra el topBotton para regresar.
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.celest)));
+        }
+
+        //Método que muestra el topBotton de la actionBar para regresar.
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Obtener el valor pasado desde el MainActivity.

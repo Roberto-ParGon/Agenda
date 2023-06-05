@@ -3,7 +3,22 @@
 
     <style name="GrayTheme" parent="Theme.AppCompat.Light">
         <!-- Otros atributos del tema -->
+
         <item name="android:colorBackground">@color/gray</item>
+
+        <!--
+
+        <item name="android:colorBackground">@color/gray</item>
+        <item name="android:background">@color/celest</item>
+        <item name="android:actionMenuTextColor">@color/mate</item>
+        <item name="android:colorPrimary">@color/celest</item>
+        <item name="android:colorPrimaryDark">@color/mate</item>
+        <item name="android:textColorPrimary">@color/mate</item>
+
+
+        -->
+
+
     </style>
 
 </resources>

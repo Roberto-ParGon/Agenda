@@ -1,5 +1,6 @@
 package com.example.activityhistorial;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +8,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -35,14 +37,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Creación de la actionBar para poder asignarle un color personalizado.
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.celest)));
+        }
+
         listaSubjects = findViewById(R.id.vistaList);
         //Creación y adición de items a la lista 'elementos'.
         elementos = new ArrayList<>();
-        elementos.add("Subject 1");
-        elementos.add("Subject 2");
-        elementos.add("Subject 3");
-        elementos.add("Subject 4");
-        elementos.add("Subject 5");
+        elementos.add("Elemento 1");
+        elementos.add("Elemento 2");
+        elementos.add("Elemento 3");
+        elementos.add("Elemento 4");
+        elementos.add("Elemento 5");
 
 
         //Se guardan los elementos en un archivo llamado "myPrefs" utilizando SharedPreferences.
