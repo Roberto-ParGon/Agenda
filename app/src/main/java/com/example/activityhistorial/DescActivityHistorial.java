@@ -22,26 +22,27 @@ public class DescActivityHistorial extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_desc_historial);
 
+        //Método que muestra el topBotton para regresar.
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        // Obtener el valor pasado desde el MainActivity
+        // Obtener el valor pasado desde el MainActivity.
         Intent intent = getIntent();
         String selectedItem = intent.getStringExtra("selectedItem");
 
-        // Utilizar el valor seleccionado en el SegundoActivity
+        // Utilizar el valor seleccionado del SegundoActivity en el nombre.
         TextView nameView = findViewById(R.id.nameInput);
         nameView.setText(selectedItem);
-
+        //Fecha.
         TextView DateView = findViewById(R.id.dateInput);
         DateView.setText(selectedItem);
-
+        //Materia.
         TextView subjectView = findViewById(R.id.subjectInput);
         subjectView.setText(selectedItem);
-
+        //Descripción
         TextView descView = findViewById(R.id.descInput);
         descView.setText(selectedItem);
 
-
+        //Se recupera el fab y se realiza la eliminación similar en el 'MainActivity'.
         FloatingActionButton fabDialog = findViewById(R.id.fab);
         fabDialog.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,13 +54,13 @@ public class DescActivityHistorial extends AppCompatActivity {
                         .setPositiveButton("Si", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                //Implementación de borrar el registro
-
-                                String selectedItem = getIntent().getStringExtra("selectedItem"); // Obtener el elemento seleccionado
+                                // Obtener el elemento seleccionado.
+                                String selectedItem = getIntent().getStringExtra("selectedItem");
                                 Intent intent = new Intent();
-                                intent.putExtra("selectedItem", selectedItem); // Pasar el elemento eliminado al MainActivity
-                                setResult(RESULT_OK, intent); // Establecer el resultado como OK
-                                finish(); // Cerrar la ConfirmarEliminacionActivity
+                                // Pasar el elemento eliminado al MainActivity
+                                intent.putExtra("selectedItem", selectedItem);
+                                setResult(RESULT_OK, intent); // Establecer el resultado del mensaje esperado como OK.
+                                finish(); // cerrar la Activity 'DescActivityHistorial' y mostrar un Toast con el mensaje de borrado.
                                 Toast.makeText(DescActivityHistorial.this, "Se borró "+selectedItem+" satisfactoriamente.", Toast.LENGTH_SHORT).show();
                             }
                         })
@@ -67,26 +68,24 @@ public class DescActivityHistorial extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 //setResult(RESULT_CANCELED); // Establecer el resultado como CANCELED
-                                //finish(); // Cerrar la ConfirmarEliminacionActivity sin eliminar nada
+                                //finish(); // Cerrar la activity.
                                 dialogInterface.cancel();
                             }
                         });
+                //Las mismas personalizaciones que en el 'MainActivity'.
                 AlertDialog titulo = alertDel.create();
                 titulo.setTitle("Eliminación del registro");
                 titulo.show();
 
                 Window window = titulo.getWindow();
                 if (window != null) {
-                    // Cambiar el color de fondo
                     window.setBackgroundDrawableResource(R.color.red);
                 }
-
             }
         });
-
-
     }
 
+    //Método que permite qué, al seleccionar regresar al menu nos regrese al home.
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
