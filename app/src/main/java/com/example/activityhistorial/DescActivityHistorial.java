@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -79,14 +80,32 @@ public class DescActivityHistorial extends AppCompatActivity {
                                 dialogInterface.cancel();
                             }
                         });
-                //Las mismas personalizaciones que en el 'MainActivity'.
-                AlertDialog titulo = alertDel.create();
-                titulo.setTitle("Eliminación del registro");
-                titulo.show();
 
-                Window window = titulo.getWindow();
+                // Obtener los botones del diálogo para personalizar su apariencia
+                final AlertDialog dialog = alertDel.create();
+                dialog.setTitle("Eliminación de todos los registros");
+
+                dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                    @Override
+                    public void onShow(DialogInterface dialogInterface) {
+                        Button positiveButton = dialog.getButton(DialogInterface.BUTTON_POSITIVE);
+                        Button negativeButton = dialog.getButton(DialogInterface.BUTTON_NEGATIVE);
+
+                        //Color de fondo de los botones.
+                        positiveButton.setBackgroundColor(getResources().getColor(R.color.green));
+                        negativeButton.setBackgroundColor(getResources().getColor(R.color.red));
+
+                        //Color del texto en los botones.
+                        positiveButton.setTextColor(getResources().getColor(android.R.color.white));
+                        negativeButton.setTextColor(getResources().getColor(android.R.color.white));
+                    }
+                });
+
+                dialog.show();
+                // Cambiar el color de fondo de la ventana del AlertDialog
+                Window window = dialog.getWindow();
                 if (window != null) {
-                    window.setBackgroundDrawableResource(R.color.red);
+                    window.setBackgroundDrawableResource(R.color.celest);
                 }
             }
         });

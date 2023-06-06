@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -112,43 +113,62 @@ public class MainActivity extends AppCompatActivity {
         fabDialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Se utiliza un alerDialog para confirmar la eliminación.
+                // Se utiliza un AlertDialog para confirmar la eliminación.
                 AlertDialog.Builder alertDel = new AlertDialog.Builder(MainActivity.this);
+
+                // Personalizar el mensaje y los botones del diálogo.
                 alertDel.setMessage("¿Seguro que desea borrar todo el historial?")
-                        .setCancelable(false)//Permite evitar que el alerDialog se cierra al pulsar fuera de el.
+                        .setCancelable(false) // Permite evitar que el AlertDialog se cierre al pulsar fuera de él.
+                        //Configurar botón "Si" con un onClickListener para borrar.
                         .setPositiveButton("Si", new DialogInterface.OnClickListener() {
-                            //En caso de que se seleccione la opción "SI":
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 //Se verifica si hay elementos de la lista disponibles para borrar.
-                                if (elementos.isEmpty()) {
+                                if(elementos.isEmpty()){
                                     Toast.makeText(MainActivity.this, "No hay elementos para borrar", Toast.LENGTH_SHORT).show();
-                                } else {
+                                }else{
                                     //En caso de que existe al menos uno, borra toda la lista. Y muestra un Toast.
                                     elementos.clear();
                                     adaptador.notifyDataSetChanged();
                                     Toast.makeText(MainActivity.this, "Se borraron todos los elementos satisfactoriamente", Toast.LENGTH_SHORT).show();
                                 }
                             }
+
                         })
-                        //En caso de que se seleccione "NO" del AlerDialog, se cierra este.
+                        //Se Instancia la opción no que como evento al clickearse cancela el dialog.
                         .setNegativeButton("No", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 dialogInterface.cancel();
                             }
                         });
-                //Se personaliza el mensaje a mostar en el AlerDialog.
-                AlertDialog titulo = alertDel.create();
-                titulo.setTitle("Eliminación de todos los registros");
-                titulo.show();
-                //Se verifica que existe la ventana mostrada en el AlertDialog.
-                Window window = titulo.getWindow();
-                if (window != null) {
-                    //Se cambia el color de la ventana utilizando un color definido en colors.xml.
-                    window.setBackgroundDrawableResource(R.color.red);
-                }
+                // Obtener los botones del diálogo para personalizar su apariencia
+                final AlertDialog dialog = alertDel.create();
+                dialog.setTitle("Eliminación de todos los registros");
 
+                dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                    @Override
+                    public void onShow(DialogInterface dialogInterface) {
+                        Button positiveButton = dialog.getButton(DialogInterface.BUTTON_POSITIVE);
+                        Button negativeButton = dialog.getButton(DialogInterface.BUTTON_NEGATIVE);
+
+                        //Color de fondo de los botones.
+                        positiveButton.setBackgroundColor(getResources().getColor(R.color.green));
+                        negativeButton.setBackgroundColor(getResources().getColor(R.color.red));
+
+                        //Color del texto en los botones.
+                        positiveButton.setTextColor(getResources().getColor(android.R.color.white));
+                        negativeButton.setTextColor(getResources().getColor(android.R.color.white));
+                    }
+                });
+
+                dialog.show();
+
+                // Cambiar el color de fondo de la ventana del AlertDialog
+                Window window = dialog.getWindow();
+                if (window != null) {
+                    window.setBackgroundDrawableResource(R.color.celest);
+                }
             }
         });
     }
