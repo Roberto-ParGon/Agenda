@@ -50,8 +50,16 @@ public class MainActivity extends AppCompatActivity {
         elementos.add("Elemento 2");
         elementos.add("Elemento 3");
         elementos.add("Elemento 4");
-        elementos.add("Elemento 5");
-
+        elementos.add("Elemento 6");
+        elementos.add("Elemento 7");
+        elementos.add("Elemento 8");
+        elementos.add("Elemento 9");
+        elementos.add("Elemento 10");
+        elementos.add("Elemento 11");
+        elementos.add("Elemento 12");
+        elementos.add("Elemento 13");
+        elementos.add("Elemento 14");
+        elementos.add("Elemento 15");
 
         //Se guardan los elementos en un archivo llamado "myPrefs" utilizando SharedPreferences.
         sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
